@@ -1,0 +1,2561 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This API contains information about enterprise location reference data.",
+    "version": "v2",
+    "title": "Location [oauth, .biz]"
+  },
+  "host": "se-api.volvocars.biz",
+  "basePath": "/xdm/Location/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/v2/countries": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Includes languages, currencies, time zones, administrative level 1's, Location groupings and sub-countries.",
+        "operationId": "getCountries",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization header (format: Bearer [access_token])",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "batchId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 100,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetCountry, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetCountry, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v2/countries/{id}": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Includes languages, currencies, time zones, administrative level 1's, Location groupings and sub-countries.",
+        "operationId": "getCountryById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization header (format: Bearer [access_token])",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "idType",
+            "in": "query",
+            "description": "The id types used to identify a country.",
+            "required": false,
+            "type": "string",
+            "default": "iso2",
+            "enum": [
+              "iso2",
+              "iso3",
+              "name",
+              "geoId"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetCountry",
+              "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetCountry"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v2/currencies": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get a complete list of currency (code, num, currency name) according to ISO4217",
+        "operationId": "getCurrencies",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization header (format: Bearer [access_token])",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "batchId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 100,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetCurrency, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetCurrency, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v2/currencies/{id}": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get detailed information for a currency, including countries where used.",
+        "operationId": "getCurrency",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization header (format: Bearer [access_token])",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "idType",
+            "in": "query",
+            "description": "The id types used to identify a currency.",
+            "required": false,
+            "type": "string",
+            "default": "iso3",
+            "enum": [
+              "iso3"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetCurrency",
+              "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetCurrency"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v2/distance": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get distance for all locations with transportation mean ROAD.",
+        "operationId": "getDistance",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization header (format: Bearer [access_token])",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "startLocationLatitude",
+            "in": "query",
+            "description": "The latitude of start location",
+            "required": true,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "startLocationLongitude",
+            "in": "query",
+            "description": "The longitude of start location",
+            "required": true,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "endLocationLatitude",
+            "in": "query",
+            "description": "The latitude of end location",
+            "required": true,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "endLocationLongitude",
+            "in": "query",
+            "description": "The longitude of end location",
+            "required": true,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "hazardousGoods",
+            "in": "query",
+            "description": "Specifies if hazardous goods (explosive,gas,flammable and combustible) are included or not. Default value false.",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmDistance",
+              "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmDistance"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v2/divisions/1": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get detailed information for administrative division 1 for all countries.",
+        "operationId": "getAdministrativeDivision1s",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization header (format: Bearer [access_token])",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "batchId",
+            "in": "query",
+            "description": "Batch Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "iso2",
+            "in": "query",
+            "description": "The two letter identifier of the country.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "The english name of the administrative division 1.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 100,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetAdministrativeDivision1, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetAdministrativeDivision1, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v2/divisions/1/{id}": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get detailed information for administrative division 1.",
+        "operationId": "getAdministrativeDivision1",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization header (format: Bearer [access_token])",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "idType",
+            "in": "query",
+            "description": "The id types used to identify a administrative division 1.",
+            "required": false,
+            "type": "string",
+            "default": "iso31662",
+            "enum": [
+              "iso31662",
+              "geoId"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetAdministrativeDivision1",
+              "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetAdministrativeDivision1"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v2/languages": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get a complete list of languages (codes, language name) according to ISO-6393.",
+        "operationId": "getLanguages",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization header (format: Bearer [access_token])",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "batchId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 100,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetLanguage, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetLanguage, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v2/languages/{id}": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get detailed information for a language, including countries where used.",
+        "operationId": "getLanguageById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization header (format: Bearer [access_token])",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "idType",
+            "in": "query",
+            "description": "The id types used to identify a language.",
+            "required": false,
+            "type": "string",
+            "default": "iso3",
+            "enum": [
+              "iso3",
+              "name"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLanguage",
+              "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLanguage"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v2/locationGroupHierarchies": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get location groups.",
+        "operationId": "getLocationGroupHierarchies",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization header (format: Bearer [access_token])",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "batchId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 100,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocationGroupHierarchy, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocationGroupHierarchy, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v2/locations": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get all available Location-data for a given Geonames-id including location hierarchy information.",
+        "operationId": "getLocations",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization header (format: Bearer [access_token])",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "batchId",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 100,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocation, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocation, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v2/locations/{id}": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get all available Location-data for a given Geonames-id including location hierarchy information.",
+        "operationId": "getLocationById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization header (format: Bearer [access_token])",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "idType",
+            "in": "query",
+            "description": "The id types used to identify a location.",
+            "required": false,
+            "type": "string",
+            "default": "geoId",
+            "enum": [
+              "geoId"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocation",
+              "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocation"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v2/timezones": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get detailed information for a timezone",
+        "operationId": "getTimezones",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization header (format: Bearer [access_token])",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "batchId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 100,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetTimezone, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetTimezone, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v2/timezones/{id}": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get detailed information for a timezone.",
+        "operationId": "getTimezone",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization header (format: Bearer [access_token])",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "idType",
+            "in": "query",
+            "description": "The id types used to identify a timezone.",
+            "required": false,
+            "type": "string",
+            "default": "id",
+            "enum": [
+              "id",
+              "name"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetTimezone",
+              "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetTimezone"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v2/vcc/distance": {
+      "get": {
+        "tags": [
+          "VccLocation"
+        ],
+        "summary": "Get distance for VCC Specific locations. Search either\r\n1. by xDM Location ID for Start AND End VCC Location or\r\n2. by Source Identifier for Start AND End VCC Location or\r\n3. by xDM identifier for leg or\r\n4. by source identifier for the leg.",
+        "operationId": "getVCCLocationDistance",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization header (format: Bearer [access_token])",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "legId",
+            "in": "query",
+            "description": "The technical identifier of Leg in xDM",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "startLocationId",
+            "in": "query",
+            "description": "The technical identifier of start VCC location in xDM",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "startLocationSourceIdentifier",
+            "in": "query",
+            "description": "The technical identifier of start VCC location in the source system",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endLocationId",
+            "in": "query",
+            "description": "The technical identifier of end VCC location in xDM",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "endLocationSourceIdentifier",
+            "in": "query",
+            "description": "The technical identifier of end VCC location in the source systemr",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "hazardousGoods",
+            "in": "query",
+            "description": "Specifies if hazardous goods (explosive,gas,flammable and combustible) are included or not",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccDistance",
+              "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccDistance"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v2/vcc/locations": {
+      "get": {
+        "tags": [
+          "VccLocation"
+        ],
+        "summary": "Get information about VCC Specific locations.",
+        "operationId": "getVCCLocations",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization header (format: Bearer [access_token])",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "street",
+            "in": "query",
+            "description": "The street of the VCC location",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "postalCode",
+            "in": "query",
+            "description": "The postal code of the VCC location",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "The city of the VCC location",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "longitude",
+            "in": "query",
+            "description": "The longitude with 0.1 accuracy for VCC location",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "latitude",
+            "in": "query",
+            "description": "The latitude with 0.1 accuracy for VCC location",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "batchId",
+            "in": "query",
+            "description": "The technical batch id of records",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 100,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v2/vcc/locations/{id}": {
+      "get": {
+        "tags": [
+          "VccLocation"
+        ],
+        "summary": "Get information about specific VCC location.",
+        "description": "Get information about VCC Specific locations.",
+        "operationId": "getVCCLocation",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization header (format: Bearer [access_token])",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "idType",
+            "in": "query",
+            "description": "The id types used to identify a vcc location.",
+            "required": false,
+            "type": "string",
+            "default": "id",
+            "enum": [
+              "id",
+              "sourceLocationId",
+              "sourceIdentifier"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation",
+              "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse",
+              "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.StandardErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "DataManagement.MDM008_Location_Api.Models.v2.Continent": {
+      "type": "object",
+      "properties": {
+        "ContinentId": {
+          "type": "string",
+          "description": "Gets or sets the continent identifier.",
+          "x-nullable": true
+        },
+        "GeonameId": {
+          "type": "string",
+          "description": "Gets or sets the geoname identifier.",
+          "x-nullable": true
+        },
+        "Name": {
+          "type": "string",
+          "description": "Gets or sets the name.",
+          "x-nullable": true
+        }
+      },
+      "description": "Continent"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.Currency": {
+      "type": "object",
+      "properties": {
+        "CurrencyId": {
+          "type": "string",
+          "description": "Gets or sets the currency identifier.",
+          "x-nullable": true
+        },
+        "DefaultCurrency": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether [default currency].",
+          "x-nullable": true
+        }
+      },
+      "description": "Currency"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.Language": {
+      "type": "object",
+      "properties": {
+        "LanguageId": {
+          "type": "string",
+          "description": "Gets or sets the language identifier.",
+          "x-nullable": true
+        },
+        "LanguageName": {
+          "type": "string",
+          "description": "Gets or sets the name of the language.",
+          "x-nullable": true
+        }
+      },
+      "description": "Language"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.TimeZone": {
+      "type": "object",
+      "properties": {
+        "TimeZoneId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Gets or sets the time zone identifier.",
+          "x-nullable": true
+        },
+        "TimeZoneName": {
+          "type": "string",
+          "description": "Gets or sets the name of the time zone.",
+          "x-nullable": true
+        }
+      },
+      "description": "Time zone"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmDistance": {
+      "type": "object",
+      "properties": {
+        "DistanceKM": {
+          "type": "number",
+          "format": "float",
+          "description": "Gets or sets the distance km.",
+          "x-nullable": true
+        },
+        "DistanceM": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Gets or sets the distance m.",
+          "x-nullable": true
+        },
+        "EndLatitude": {
+          "type": "number",
+          "format": "float",
+          "description": "Gets or sets the end latitude.",
+          "x-nullable": true
+        },
+        "EndLongitude": {
+          "type": "number",
+          "format": "float",
+          "description": "Gets or sets the end longitude.",
+          "x-nullable": true
+        },
+        "FirstSectionArrivalLatitude": {
+          "type": "number",
+          "format": "float",
+          "description": "Gets or sets the first section arrival latitude.",
+          "x-nullable": true
+        },
+        "FirstSectionArrivalLongitude": {
+          "type": "number",
+          "format": "float",
+          "description": "Gets or sets the first section arrival longitude.",
+          "x-nullable": true
+        },
+        "MoreThan1SectionFlag": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether [more than1 section flag].",
+          "x-nullable": true
+        },
+        "SecondSectionType": {
+          "type": "string",
+          "description": "Gets or sets the type of the second section.",
+          "x-nullable": true
+        },
+        "ShippedHazardousGoods": {
+          "type": "string",
+          "description": "Gets or sets the shipped hazardous goods.",
+          "x-nullable": true
+        },
+        "ShippedHazardousGoodsIsTrue": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether [shipped hazardous goods is true].",
+          "x-nullable": true
+        },
+        "StartLatitude": {
+          "type": "number",
+          "format": "float",
+          "description": "Gets or sets the start latitude.",
+          "x-nullable": true
+        },
+        "StartLongitude": {
+          "type": "number",
+          "format": "float",
+          "description": "Gets or sets the start longitude.",
+          "x-nullable": true
+        }
+      },
+      "description": "Model of xDM response from semarchy/api/rest/loads/EnterpriseDataLocation/14762"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetAdministrativeDivision1": {
+      "type": "object",
+      "properties": {
+        "ISO31662SubDivisionCode": {
+          "type": "string",
+          "description": "Gets or sets the is o31662 sub division code.",
+          "x-nullable": true
+        },
+        "IsActive": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether this instance is active."
+        },
+        "LOV_AdministrativeDivision1ID": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Gets or sets the lov administrative division1 identifier."
+        },
+        "LOV_Country": {
+          "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetAdministrativeDivision1.LovCountry",
+          "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetAdministrativeDivision1.LovCountry"
+        },
+        "NameEn": {
+          "type": "string",
+          "description": "Gets or sets the name en.",
+          "x-nullable": true
+        },
+        "SourceModificationDate": {
+          "type": "string",
+          "description": "Gets or sets the source modification date.",
+          "x-nullable": true
+        }
+      },
+      "description": "Model of xDM API EnterpriseDataLocation/getAdministrativeDivision1/GD"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetAdministrativeDivision1.LovCountry": {
+      "type": "object",
+      "properties": {
+        "CountryCode": {
+          "type": "string",
+          "description": "Gets or sets the country code.",
+          "x-nullable": true
+        }
+      },
+      "description": "LOV Country"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetCountry": {
+      "type": "object",
+      "properties": {
+        "Continent": {
+          "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.Continent",
+          "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.Continent"
+        },
+        "CountryCallingCode": {
+          "type": "string",
+          "description": "Gets or sets the country calling code.",
+          "x-nullable": true
+        },
+        "CountryCode": {
+          "type": "string",
+          "description": "Gets or sets the country code.",
+          "x-nullable": true
+        },
+        "CountryCode3Letter": {
+          "type": "string",
+          "description": "Gets or sets the country code3 letter.",
+          "x-nullable": true
+        },
+        "CountryCodeNumeric": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Gets or sets the country code numeric.",
+          "x-nullable": true
+        },
+        "CountryName": {
+          "type": "string",
+          "description": "Gets or sets the name of the country.",
+          "x-nullable": true
+        },
+        "CountryNameAscii": {
+          "type": "string",
+          "description": "Gets or sets the country name ASCII.",
+          "x-nullable": true
+        },
+        "Currencies": {
+          "type": "array",
+          "description": "Gets or sets the currencies.",
+          "items": {
+            "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.Currency",
+            "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.Currency"
+          },
+          "x-nullable": true
+        },
+        "FipsCountryCode": {
+          "type": "string",
+          "description": "Gets or sets the fips country code.",
+          "x-nullable": true
+        },
+        "GeonameId": {
+          "type": "string",
+          "description": "Gets or sets the geoname identifier.",
+          "x-nullable": true
+        },
+        "IsActive": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether this instance is active.",
+          "x-nullable": true
+        },
+        "Languages": {
+          "type": "array",
+          "description": "Gets or sets the languages.",
+          "items": {
+            "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.Language",
+            "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.Language"
+          },
+          "x-nullable": true
+        },
+        "Latitude": {
+          "type": "string",
+          "description": "Gets or sets the latitude.",
+          "x-nullable": true
+        },
+        "Longitude": {
+          "type": "string",
+          "description": "Gets or sets the longitude.",
+          "x-nullable": true
+        },
+        "Parent": {
+          "type": "string",
+          "description": "Gets or sets the parent.",
+          "x-nullable": true
+        },
+        "PostalCodeFormat": {
+          "type": "string",
+          "description": "Gets or sets the postal code format.",
+          "x-nullable": true
+        },
+        "SubCountries": {
+          "type": "string",
+          "description": "Gets or sets the sub countries.",
+          "x-nullable": true
+        },
+        "TimeZones": {
+          "type": "array",
+          "description": "Gets or sets the time zones.",
+          "items": {
+            "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.TimeZone",
+            "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.TimeZone"
+          },
+          "x-nullable": true
+        },
+        "TopLevelDomain": {
+          "type": "string",
+          "description": "Gets or sets the top level domain.",
+          "x-nullable": true
+        }
+      },
+      "description": "Model of xDM API EnterpriseDataLocation/getCountry/GD"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetCurrency": {
+      "type": "object",
+      "properties": {
+        "Countries": {
+          "type": "array",
+          "description": "Gets or sets the countries.",
+          "items": {
+            "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetCurrency.CountriesClass",
+            "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetCurrency.CountriesClass"
+          },
+          "x-nullable": true
+        },
+        "CurrencyId": {
+          "type": "string",
+          "description": "Gets or sets the currency identifier.",
+          "x-nullable": true
+        },
+        "CurrencyName": {
+          "type": "string",
+          "description": "Gets or sets the name of the currency.",
+          "x-nullable": true
+        },
+        "IsActive": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether this instance is active.",
+          "x-nullable": true
+        }
+      },
+      "description": "Model of xDM API EnterpriseDataLocation/getCurrency/GD"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetCurrency.CountriesClass": {
+      "type": "object",
+      "properties": {
+        "Country": {
+          "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetCurrency.CountryClass",
+          "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetCurrency.CountryClass"
+        },
+        "DefaultCurrency": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether [default currency].",
+          "x-nullable": true
+        }
+      },
+      "description": "Countries"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetCurrency.CountryClass": {
+      "type": "object",
+      "properties": {
+        "CountryCode": {
+          "type": "string",
+          "description": "Gets or sets the country code.",
+          "x-nullable": true
+        }
+      },
+      "description": "Country"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetLanguage": {
+      "type": "object",
+      "properties": {
+        "Countries": {
+          "type": "array",
+          "description": "Gets or sets the countries.",
+          "items": {
+            "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLanguage.CountryClass",
+            "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLanguage.CountryClass"
+          },
+          "x-nullable": true
+        },
+        "ISO6391Code": {
+          "type": "string",
+          "description": "Gets or sets the iso6391 code.",
+          "x-nullable": true
+        },
+        "ISO6392Code": {
+          "type": "string",
+          "description": "Gets or sets the iso6392 code.",
+          "x-nullable": true
+        },
+        "ISO6393Code": {
+          "type": "string",
+          "description": "Gets or sets the iso6393 code.",
+          "x-nullable": true
+        },
+        "IsActive": {
+          "type": "boolean",
+          "description": "Gets or sets the is active.",
+          "x-nullable": true
+        },
+        "LanguageName": {
+          "type": "string",
+          "description": "Gets or sets the name of the language.",
+          "x-nullable": true
+        }
+      },
+      "description": "Model of xDM API EnterpriseDataLocation/getLanguage/GD"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetLanguage.CountryClass": {
+      "type": "object",
+      "properties": {
+        "Country": {
+          "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLanguage.CountryClass.CountryCodeClass",
+          "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLanguage.CountryClass.CountryCodeClass"
+        }
+      },
+      "description": "Response heirarchy envelope"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetLanguage.CountryClass.CountryCodeClass": {
+      "type": "object",
+      "properties": {
+        "CountryCode": {
+          "type": "string",
+          "description": "Gets or sets the country code.",
+          "x-nullable": true
+        }
+      },
+      "description": "Response heirarchy envelope"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocation": {
+      "type": "object",
+      "properties": {
+        "Admin1Code": {
+          "type": "string",
+          "description": "Gets or sets the admin1 code.",
+          "x-nullable": true
+        },
+        "Admin2Code": {
+          "type": "string",
+          "description": "Gets or sets the admin2 code.",
+          "x-nullable": true
+        },
+        "Admin3Code": {
+          "type": "string",
+          "description": "Gets or sets the admin3 code.",
+          "x-nullable": true
+        },
+        "Admin4Code": {
+          "type": "string",
+          "description": "Gets or sets the admin4 code.",
+          "x-nullable": true
+        },
+        "AlternateCountryCodes": {
+          "type": "string",
+          "description": "Gets or sets the alternate country codes.",
+          "x-nullable": true
+        },
+        "Children": {
+          "type": "string",
+          "description": "Gets or sets the children.",
+          "x-nullable": true
+        },
+        "CountryCode": {
+          "type": "string",
+          "description": "Gets or sets the country code.",
+          "x-nullable": true
+        },
+        "Currency": {
+          "type": "string",
+          "description": "Gets or sets the currency.",
+          "x-nullable": true
+        },
+        "DigitalElevationModel": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Gets or sets the digital elevation model.",
+          "x-nullable": true
+        },
+        "Elevation": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Gets or sets the elevation.",
+          "x-nullable": true
+        },
+        "FeatureClass": {
+          "type": "string",
+          "description": "Gets or sets the feature class.",
+          "x-nullable": true
+        },
+        "FeatureCode": {
+          "type": "string",
+          "description": "Gets or sets the feature code.",
+          "x-nullable": true
+        },
+        "GeonameId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Gets or sets the geoname identifier.",
+          "x-nullable": true
+        },
+        "IsActive": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether this instance is active.",
+          "x-nullable": true
+        },
+        "Latitude": {
+          "type": "string",
+          "description": "Gets or sets the latitude.",
+          "x-nullable": true
+        },
+        "LocationName": {
+          "type": "string",
+          "description": "Gets or sets the name of the location.",
+          "x-nullable": true
+        },
+        "LocationNameAscii": {
+          "type": "string",
+          "description": "Gets or sets the location name ASCII.",
+          "x-nullable": true
+        },
+        "Longitude": {
+          "type": "string",
+          "description": "Gets or sets the longitude.",
+          "x-nullable": true
+        },
+        "Parents": {
+          "type": "string",
+          "description": "Gets or sets the parents.",
+          "x-nullable": true
+        },
+        "Population": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Gets or sets the population.",
+          "x-nullable": true
+        },
+        "TimeZones": {
+          "type": "string",
+          "description": "Gets or sets the time zones.",
+          "x-nullable": true
+        }
+      },
+      "description": "Model of xDM API EnterpriseDataLocation/getLocationByID/GD"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocationGroupHierarchy": {
+      "type": "object",
+      "properties": {
+        "LevelName": {
+          "type": "string",
+          "description": "Gets or sets the name of the level.",
+          "x-nullable": true
+        },
+        "LocationGroupHierarchyId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Gets or sets the location group hierarchy identifier.",
+          "x-nullable": true
+        },
+        "LocationGroupName": {
+          "type": "string",
+          "description": "Gets or sets the name of the location group.",
+          "x-nullable": true
+        },
+        "Locations": {
+          "type": "array",
+          "description": "Gets or sets the locations.",
+          "items": {
+            "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocationGroupHierarchy.Location",
+            "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocationGroupHierarchy.Location"
+          },
+          "x-nullable": true
+        },
+        "ParentLocationGroupHierarchyId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Gets or sets the parent location group hierarchy identifier.",
+          "x-nullable": true
+        }
+      },
+      "description": "Model of xDM API EnterpriseDataLocation/getLocationGroupHierarchy/GD"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocationGroupHierarchy.Location": {
+      "type": "object",
+      "properties": {
+        "AdministrativeDivision1": {
+          "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocationGroupHierarchy.Location.AdministrativeDivision1Class",
+          "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocationGroupHierarchy.Location.AdministrativeDivision1Class"
+        },
+        "Country": {
+          "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocationGroupHierarchy.Location.CountryClass",
+          "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocationGroupHierarchy.Location.CountryClass"
+        }
+      },
+      "description": "Location"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocationGroupHierarchy.Location.AdministrativeDivision1Class": {
+      "type": "object",
+      "properties": {
+        "AdministrativeDivision1Id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Gets or sets the administrative division1 identifier.",
+          "x-nullable": true
+        },
+        "CountryCode": {
+          "type": "string",
+          "description": "Gets or sets the country code.",
+          "x-nullable": true
+        },
+        "NameEn": {
+          "type": "string",
+          "description": "Gets or sets the name en.",
+          "x-nullable": true
+        }
+      },
+      "description": "Administrative Division1"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocationGroupHierarchy.Location.CountryClass": {
+      "type": "object",
+      "properties": {
+        "CountryCode": {
+          "type": "string",
+          "description": "Gets or sets the country code.",
+          "x-nullable": true
+        },
+        "CountryCode3Letter": {
+          "type": "string",
+          "description": "Gets or sets the country code3 letter.",
+          "x-nullable": true
+        },
+        "CountryName": {
+          "type": "string",
+          "description": "Gets or sets the name of the country.",
+          "x-nullable": true
+        }
+      },
+      "description": "Country"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetTimezone": {
+      "type": "object",
+      "properties": {
+        "DSTOffset": {
+          "type": "number",
+          "format": "double",
+          "description": "Gets or sets the DST offset.",
+          "x-nullable": true
+        },
+        "GMTOffset": {
+          "type": "number",
+          "format": "double",
+          "description": "Gets or sets the GMT offset.",
+          "x-nullable": true
+        },
+        "IsActive": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether this instance is active.",
+          "x-nullable": true
+        },
+        "RawOffset": {
+          "type": "number",
+          "format": "double",
+          "description": "Gets or sets the raw offset.",
+          "x-nullable": true
+        },
+        "TimeZoneId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Gets or sets the time zone identifier.",
+          "x-nullable": true
+        },
+        "TimeZoneName": {
+          "type": "string",
+          "description": "Gets or sets the name of the time zone.",
+          "x-nullable": true
+        }
+      },
+      "description": "Model of xDM API EnterpriseDataLocation/getTimezone/GD"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccDistance": {
+      "type": "object",
+      "properties": {
+        "DistanceKM": {
+          "type": "number",
+          "format": "float",
+          "description": "Gets or sets the distance km.",
+          "x-nullable": true
+        },
+        "DistanceM": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Gets or sets the distance m.",
+          "x-nullable": true
+        },
+        "FID_EndVCCLocation": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Gets or sets the fid end VCC location.",
+          "x-nullable": true
+        },
+        "FID_StartVCCLocation": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Gets or sets the fid start VCC location.",
+          "x-nullable": true
+        },
+        "FID_TransportationMode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Gets or sets the fid transportation mode.",
+          "x-nullable": true
+        },
+        "FirstSectionArrivalLatitude": {
+          "type": "number",
+          "format": "float",
+          "description": "Gets or sets the first section arrival latitude.",
+          "x-nullable": true
+        },
+        "FirstSectionArrivalLongitude": {
+          "type": "number",
+          "format": "float",
+          "description": "Gets or sets the first section arrival longitude.",
+          "x-nullable": true
+        },
+        "LegID": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Gets or sets the leg identifier.",
+          "x-nullable": true
+        },
+        "MoreThan1SectionFlag": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether [more than1 section flag].",
+          "x-nullable": true
+        },
+        "SecondSectionType": {
+          "type": "string",
+          "description": "Gets or sets the type of the second section.",
+          "x-nullable": true
+        },
+        "ShippedHazardousGoods": {
+          "type": "string",
+          "description": "Gets or sets the shipped hazardous goods.",
+          "x-nullable": true
+        },
+        "ShippedHazardousGoodsIsTrue": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether [shipped hazardous goods is true].",
+          "x-nullable": true
+        },
+        "SourceIdentifier": {
+          "type": "string",
+          "description": "Gets or sets the source identifier.",
+          "x-nullable": true
+        }
+      },
+      "description": "Model of xDM API EnterpriseDataLocation/getVCCLocationDistance/GD"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation": {
+      "type": "object",
+      "properties": {
+        "Capacity": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Gets or sets the capacity.",
+          "x-nullable": true
+        },
+        "City": {
+          "type": "string",
+          "description": "Gets or sets the city.",
+          "x-nullable": true
+        },
+        "Compound": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether this is compound.",
+          "x-nullable": true
+        },
+        "DealerStock": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether [dealer stock].",
+          "x-nullable": true
+        },
+        "EnrichedLatitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Gets or sets the enriched latitude.",
+          "x-nullable": true
+        },
+        "EnrichedLongitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Gets or sets the enriched longitude.",
+          "x-nullable": true
+        },
+        "LOV_Country": {
+          "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation.LovCountry",
+          "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation.LovCountry"
+        },
+        "LOV_PostalCode": {
+          "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation.LovPostalCode",
+          "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation.LovPostalCode"
+        },
+        "Latitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Gets or sets the latitude.",
+          "x-nullable": true
+        },
+        "LatitudeIsValid": {
+          "type": "string",
+          "description": "Gets or sets the latitude is valid.",
+          "x-nullable": true
+        },
+        "Longitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Gets or sets the longitude.",
+          "x-nullable": true
+        },
+        "LongitudeIsValid": {
+          "type": "string",
+          "description": "Gets or sets the longitude is valid.",
+          "x-nullable": true
+        },
+        "NSCStock": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether [nsc stock].",
+          "x-nullable": true
+        },
+        "Name": {
+          "type": "string",
+          "description": "Gets or sets the name.",
+          "x-nullable": true
+        },
+        "OBLEndpoint": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether [obl endpoint].",
+          "x-nullable": true
+        },
+        "Port": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether this is port.",
+          "x-nullable": true
+        },
+        "PostalCode": {
+          "type": "string",
+          "description": "Gets or sets the postal code.",
+          "x-nullable": true
+        },
+        "Process": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether this is process.",
+          "x-nullable": true
+        },
+        "RSL": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether this is RSL.",
+          "x-nullable": true
+        },
+        "Railhead": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether this  is railhead.",
+          "x-nullable": true
+        },
+        "SCSL": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether this is SCSL.",
+          "x-nullable": true
+        },
+        "SourceIdentifier": {
+          "type": "string",
+          "description": "Gets or sets the source identifier.",
+          "x-nullable": true
+        },
+        "SourceLocationID": {
+          "type": "string",
+          "description": "Gets or sets the source location identifier.",
+          "x-nullable": true
+        },
+        "Street": {
+          "type": "string",
+          "description": "Gets or sets the street.",
+          "x-nullable": true
+        },
+        "VCCLocationID": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Gets or sets the VCC location identifier.",
+          "x-nullable": true
+        },
+        "Yard": {
+          "type": "boolean",
+          "description": "Gets or sets a value indicating whether this  is yard.",
+          "x-nullable": true
+        }
+      },
+      "description": "Model of xDM API EnterpriseDataLocation/getVCCLocation/GD"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation.Continent": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string",
+          "description": "Gets or sets the name.",
+          "x-nullable": true
+        }
+      },
+      "description": "Continent"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation.LovCountry": {
+      "type": "object",
+      "properties": {
+        "Continent": {
+          "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation.Continent",
+          "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation.Continent"
+        },
+        "CountryCode": {
+          "type": "string",
+          "description": "Gets or sets the country code.",
+          "x-nullable": true
+        },
+        "CountryName": {
+          "type": "string",
+          "description": "Gets or sets the name of the country.",
+          "x-nullable": true
+        }
+      },
+      "description": "LOV Country"
+    },
+    "DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation.LovPostalCode": {
+      "type": "object",
+      "properties": {
+        "Latitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Gets or sets the latitude.",
+          "x-nullable": true
+        },
+        "Longitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Gets or sets the longitude.",
+          "x-nullable": true
+        },
+        "PlaceName": {
+          "type": "string",
+          "description": "Gets or sets the name of the place.",
+          "x-nullable": true
+        },
+        "PostalCode": {
+          "type": "string",
+          "description": "Gets or sets the postal code.",
+          "x-nullable": true
+        }
+      },
+      "description": "LOV Postal Code"
+    },
+    "DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetAdministrativeDivision1, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetCountry, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetCurrency, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetLanguage, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocation, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocationGroupHierarchy, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetTimezone, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetAdministrativeDivision1, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetAdministrativeDivision1",
+            "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetAdministrativeDivision1"
+          },
+          "x-nullable": true
+        },
+        "pagination": {
+          "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetAdministrativeDivision1, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+          "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetAdministrativeDivision1, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetCountry, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetCountry",
+            "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetCountry"
+          },
+          "x-nullable": true
+        },
+        "pagination": {
+          "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetCountry, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+          "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetCountry, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetCurrency, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetCurrency",
+            "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetCurrency"
+          },
+          "x-nullable": true
+        },
+        "pagination": {
+          "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetCurrency, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+          "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetCurrency, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetLanguage, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLanguage",
+            "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLanguage"
+          },
+          "x-nullable": true
+        },
+        "pagination": {
+          "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetLanguage, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+          "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetLanguage, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocation, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocation",
+            "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocation"
+          },
+          "x-nullable": true
+        },
+        "pagination": {
+          "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocation, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+          "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocation, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocationGroupHierarchy, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocationGroupHierarchy",
+            "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocationGroupHierarchy"
+          },
+          "x-nullable": true
+        },
+        "pagination": {
+          "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocationGroupHierarchy, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+          "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetLocationGroupHierarchy, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetTimezone, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetTimezone",
+            "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetTimezone"
+          },
+          "x-nullable": true
+        },
+        "pagination": {
+          "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetTimezone, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+          "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetTimezone, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation",
+            "originalRef": "#/definitions/DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation"
+          },
+          "x-nullable": true
+        },
+        "pagination": {
+          "$ref": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+          "originalRef": "#/definitions/DataManagement.NetCore.Mvc.Models.MdmPaginationResponse`1.MdmPaginationMetadata[[DataManagement.MDM008_Location_Api.Models.v2.XdmGetVccLocation, DataManagement.MDM008-Location-Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "DataManagement.NetCore.Mvc.Models.StandardErrorResponse": {
+      "type": "object",
+      "properties": {
+        "errorMessage": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "responsibleSystem": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "statusMessage": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    }
+  }
+}
